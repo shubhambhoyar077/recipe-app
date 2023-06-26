@@ -20,9 +20,12 @@ class RecipesController < ApplicationController
     end
   end
 
-  # def destroy
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
 
-  # end
+    redirect_to recipes_path, status: :see_other
+  end
 
   private
   def recipe_params
