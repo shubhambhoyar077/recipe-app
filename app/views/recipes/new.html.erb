@@ -1,0 +1,18 @@
+<%= form_with model:@recipe do |form|%>
+<h1>Create Recipe</h1>
+<%=form.label :name%>
+<%=form.text_field :name%>
+
+<%=form.label :preparation_time%>
+<%=form.number_field :preparation_time%>
+
+<%=form.label :cooking_time%>
+<%=form.number_field :cooking_time%>
+
+<%= check_box_tag :public, value: '0', checked: false %>
+<%= label_tag :public, "Public" %>
+
+<%=form.label :description%>
+<%=form.text_area :description%>
+<%=form.submit "Create"%>
+<%end%>
