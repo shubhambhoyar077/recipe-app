@@ -20,6 +20,20 @@ class RecipesController < ApplicationController
     end
   end
 
+  def update
+    @recipe = Recipe.find(params[:id])
+
+    if @recipe.update(recipe_params)
+      msg = "Recipe is Private"
+      msg = "Recipe is Public" if @recipe.public
+      redirect_to recipe_path(@recipe), notice: msg
+    else
+      redirect_to recipe_path(@recipe), alert: "Someting is wrong"
+    end
+    
+  end
+  
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
@@ -31,4 +45,8 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :public, :description)
   end
+
+  # def toggle_params
+  #   params.require(:recipe).permit(:public)
+  # end
 end
