@@ -14,8 +14,10 @@
       <td><%="#{recipe_food.quantity} #{recipe_food.food.measurement_unit}"%></td>
       <td><%=recipe_food.quantity * recipe_food.food.price%></td>
       <td>
-        <%= button_to "Modify"%>
-        <%= button_to "Remove"%>
+        <div class="d-flex mb-3">
+          <%= button_to "Modify", {},class: "btn btn-primary ms-3"%>
+          <%= button_to "Remove", recipe_recipe_food_path(recipe_food.recipe, recipe_food), method: :delete, class: "btn btn-primary ms-3"%>
+        </div>
       </td>
     </tr>
   <%end%>
