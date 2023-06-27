@@ -3,7 +3,7 @@
 <span>Preparation time: <%=@recipe.preparation_time%> hours</span>
 <span>Cooking time: <%=@recipe.cooking_time%> hours</span>
 <p>Process: <%=@recipe.description%></p>
-<%= button_to "Generate shopping list" %>
+<%= button_to "Generate shopping list", generate_shopping_list_path, method: :get %>
 <%= button_to "Add Ingredient", new_recipe_recipe_food_path(@recipe), method: :get %>
 <%= render 'shared/recipe_food_table', recipe_foods: @recipe.recipe_food%>
 </div>
