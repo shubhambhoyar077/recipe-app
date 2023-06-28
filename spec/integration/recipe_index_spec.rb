@@ -16,8 +16,8 @@ RSpec.describe 'Recipe', type: :system do
       expect(page).to have_content('test recipe2')
     end
     it 'Recipes description' do
-      expect(page).to have_content('est test1')
-      expect(page).to have_content('est test2')
+      expect(page).to have_content('test test1')
+      expect(page).to have_content('test test2')
     end
     it 'When I click on a recipe, I am redirected to that recipe show page.' do
       click_link 'test recipe1'
@@ -25,7 +25,8 @@ RSpec.describe 'Recipe', type: :system do
     end
     it 'When I click on a recipe remove btn, recipe is deleted.' do
       click_button 'REMOVE', id: "remove-button-#{@recipe.id}"
-      expect(Recipe.exists?(@recipe.id)).to be_falsey
+      expect(page).to_not have_content('test test1')
+      expect(page).to have_content('test test2')
     end
   end
 end
