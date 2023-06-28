@@ -6,7 +6,7 @@ gem 'devise'
 gem 'rails-controller-testing'
 gem 'rspec-rails'
 
-ruby '3.2.0'
+ruby '3.2.2'
 
 # Rubocop from microverse linter config.
 gem 'rubocop', '>= 1.0', '< 2.0'

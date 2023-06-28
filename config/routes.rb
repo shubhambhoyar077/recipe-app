@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
   get 'generate_shopping_list', to: 'shopping_lists#generate'
   
+  resources :foods
 end
