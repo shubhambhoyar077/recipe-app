@@ -4,7 +4,6 @@ describe Recipe, type: :model do
 
   before :each do
     @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
-    puts @user.errors.full_messages
     @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test")
   end
 
