@@ -79,14 +79,13 @@ RSpec.describe Recipe, type: :request do
     end
   end
 
-  describe 'DELETE :update' do
+  describe 'DELETE :destroy' do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       sign_in @user
       @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description")
     end
     it "delete recipe" do
-      recipe_attributes = { public: true }
 
       delete recipe_path(@recipe)
 
