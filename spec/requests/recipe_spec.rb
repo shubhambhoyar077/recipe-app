@@ -50,35 +50,49 @@ RSpec.describe Recipe, type: :request do
       sign_in @user
     end
     it "creates a new recipe" do
+      recipe_attributes = { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description" }
 
-      # Define the recipe attributes you want to create
-      recipe_attributes = { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test" }
+      post "/recipes", params: { recipe: recipe_attributes }
 
-      # Perform the POST request
-      post :create, params: { recipe: recipe_attributes }
-
-      # Assert that the recipe was created successfully
-      expect(response).to have_http_status(:created)
+      expect(response.status).to eq(302)
       expect(Recipe.count).to eq(1)
-      expect(Recipe.last.name).to eq("Test Recipe")
-      expect(Recipe.last.description).to eq("Test description")
+      expect(Recipe.last.name).to eq("test recipe")
+      expect(Recipe.last.description).to eq("test description")
     end
-    # it "creates a new recipe with success" do
-    #   post :create, params: { recipe: { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test" } }, path: recipes_path
-    #   expect(response).to have_http_status(:success)
-    # end
+  end
 
-    # it "creates a new recipe and checking count" do
-    #   expect {
-    #     post :create, params: { recipe: { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test" } }, path: recipes_path
-    #   }.to change(Recipe, :count).by(1)
-    # end
+  describe 'PATCH :update' do
+    before do
+      @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
+      sign_in @user
+      @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description")
+    end
+    it "update recipe visibility" do
+      recipe_attributes = { public: true }
 
-    # it "creates a new recipe with success" do
-    #   post :create, params: { recipe: { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test" } }, path: recipes_path
-    #   expect(response.body).to include('test recipe')
-    # end
+      patch recipe_path(@recipe), params: { recipe: recipe_attributes }
 
-    
+      expect(response.status).to eq(302)
+      expect(Recipe.last.public).to eq(true)
+      expect(Recipe.last.name).to eq("test recipe")
+      expect(Recipe.last.description).to eq("test description")
+    end
+  end
+
+  describe 'DELETE :update' do
+    before do
+      @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
+      sign_in @user
+      @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description")
+    end
+    it "delete recipe" do
+      recipe_attributes = { public: true }
+
+      delete recipe_path(@recipe)
+
+      expect(response.status).to eq(303)
+      expect(Recipe.exists?(@recipe.id)).to be_falsey
+      expect(response).to redirect_to(recipes_path)
+    end
   end
 end
