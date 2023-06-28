@@ -14,7 +14,7 @@
           <%=recipe.name%>
           <%end%>
         </h5>
-        <%= button_to "REMOVE", recipe_path(recipe), method: :delete, class: "btn btn-primary" %>
+        <%= button_to "REMOVE", recipe_path(recipe), method: :delete, class: "btn btn-primary", id: "remove-button-#{recipe.id}"%>
       </div>
     </div>
     <div class="col-md-8">
