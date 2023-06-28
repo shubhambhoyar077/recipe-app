@@ -10,8 +10,10 @@ RSpec.describe 'Recipe', type: :system do
       fill_in 'Password', with: @user.password
       click_button 'Log in'
     end
-    it 'Recipe name' do
+    it 'Recipe content' do
       expect(page).to have_content('test recipe1')
+      expect(page).to have_content("Preparation time: #{@recipe.preparation_time} hours")
+      expect(page).to have_content("Cooking time: #{@recipe.cooking_time} hours")
     end
     it 'Recipes description' do
       expect(page).to have_content('test test1')
@@ -23,6 +25,10 @@ RSpec.describe 'Recipe', type: :system do
     it 'When I click on a Add Inrgredient btn, I am redirected to Add ingredient page.' do
       click_button 'Add Ingredient'
       expect(page).to have_current_path(new_recipe_recipe_food_path(@recipe))
+    end
+    it 'click on a toggle btn.' do
+      check('toggle-btn')
+      expect(page).to have_css('#toggle-btn:checked')
     end
   end
 end
