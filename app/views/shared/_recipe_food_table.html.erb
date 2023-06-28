@@ -1,0 +1,25 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Value</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% recipe_foods.each do |recipe_food|%>
+    <tr>
+      <td><%=recipe_food.food.name%></td>
+      <td><%="#{recipe_food.quantity} #{recipe_food.food.measurement_unit}"%></td>
+      <td><%=recipe_food.quantity * recipe_food.food.price%></td>
+      <td>
+        <div class="d-flex mb-3">
+          <%= button_to "Modify", {},class: "btn btn-primary ms-3"%>
+          <%= button_to "Remove", recipe_recipe_food_path(recipe_food.recipe, recipe_food), method: :delete, class: "btn btn-primary ms-3"%>
+        </div>
+      </td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>

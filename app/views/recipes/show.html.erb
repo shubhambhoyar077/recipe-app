@@ -1,0 +1,17 @@
+<div>
+<h1 class="text-center mb-3"><%=@recipe.name%></h1>
+<div class="d-flex justify-content-between mb-3">
+<div class="fs-4">Preparation time: <%=@recipe.preparation_time%> hours</div>
+<%= render 'shared/toggle_btn', recipe: @recipe%>
+</div>
+<div class="fs-4">Cooking time: <%=@recipe.cooking_time%> hours</div>
+<p class="text-break fs-4">Process: <%=@recipe.description%></p>
+<div class="d-flex justify-content-between mb-3">
+<%= button_to "Generate shopping list", generate_shopping_list_path, method: :get, class: "btn btn-primary" %>
+<%= button_to "Add Ingredient", new_recipe_recipe_food_path(@recipe), method: :get, class: "btn btn-primary" %>
+</div>
+<%= render 'shared/recipe_food_table', recipe_foods: @recipe.recipe_food%>
+</div>
+
+
+
