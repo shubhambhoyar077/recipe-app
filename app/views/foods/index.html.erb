@@ -21,9 +21,7 @@
 <td><%= food.measurement_unit %></td>
 <td>$<%= food.price %></td>
 <td><%= food.quantity %></td>
-<td><%= link_to "Remove", food_path(food), data: {
-    confirm: "Are you sure you want to delete: #{food.name}?",
-}, method: :delete %></td>
+<td><%= button_to "Remove", food_path(food), method: :delete %></td>
 </tr>
 <% end %>
 </tbody>
