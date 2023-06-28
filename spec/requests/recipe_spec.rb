@@ -7,15 +7,15 @@ RSpec.describe Recipe, type: :request do
       sign_in @user
     end
     it 'should responce with success.' do
-      get "/recipes"
+      get '/recipes'
       expect(response).to have_http_status(:success)
     end
     it 'should responce with correct status' do
-      get "/recipes"
+      get '/recipes'
       expect(response.status).to eq(200)
     end
     it 'should render correct template' do
-      get "/recipes"
+      get '/recipes'
       expect(response).to render_template('index')
     end
   end
@@ -24,7 +24,8 @@ RSpec.describe Recipe, type: :request do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       sign_in @user
-      @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test")
+      @recipe = Recipe.create(user: @user, name: 'test recipe', preparation_time: 1, cooking_time: 10,
+                              description: 'test test')
     end
     it 'should responce with success.' do
       get recipe_path(@recipe)
@@ -49,15 +50,16 @@ RSpec.describe Recipe, type: :request do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       sign_in @user
     end
-    it "creates a new recipe" do
-      recipe_attributes = { name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description" }
+    it 'creates a new recipe' do
+      recipe_attributes = { name: 'test recipe', preparation_time: 1, cooking_time: 10,
+                            description: 'test description' }
 
-      post "/recipes", params: { recipe: recipe_attributes }
+      post '/recipes', params: { recipe: recipe_attributes }
 
       expect(response.status).to eq(302)
       expect(Recipe.count).to eq(1)
-      expect(Recipe.last.name).to eq("test recipe")
-      expect(Recipe.last.description).to eq("test description")
+      expect(Recipe.last.name).to eq('test recipe')
+      expect(Recipe.last.description).to eq('test description')
     end
   end
 
@@ -65,17 +67,18 @@ RSpec.describe Recipe, type: :request do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       sign_in @user
-      @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description")
+      @recipe = Recipe.create(user: @user, name: 'test recipe', preparation_time: 1, cooking_time: 10,
+                              description: 'test description')
     end
-    it "update recipe visibility" do
+    it 'update recipe visibility' do
       recipe_attributes = { public: true }
 
       patch recipe_path(@recipe), params: { recipe: recipe_attributes }
 
       expect(response.status).to eq(302)
       expect(Recipe.last.public).to eq(true)
-      expect(Recipe.last.name).to eq("test recipe")
-      expect(Recipe.last.description).to eq("test description")
+      expect(Recipe.last.name).to eq('test recipe')
+      expect(Recipe.last.description).to eq('test description')
     end
   end
 
@@ -83,10 +86,10 @@ RSpec.describe Recipe, type: :request do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       sign_in @user
-      @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test description")
+      @recipe = Recipe.create(user: @user, name: 'test recipe', preparation_time: 1, cooking_time: 10,
+                              description: 'test description')
     end
-    it "delete recipe" do
-
+    it 'delete recipe' do
       delete recipe_path(@recipe)
 
       expect(response.status).to eq(303)

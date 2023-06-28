@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 describe Recipe, type: :model do
-
   before :each do
     @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
     puts @user.errors.full_messages
-    @recipe = Recipe.create(user: @user, name: "test recipe", preparation_time: 1, cooking_time: 10, description: "test test")
-    @test_food = Food.create(user: @user, name: "test food", measurement_unit: 'unit', price: 10, quantity: 2)
+    @recipe = Recipe.create(user: @user, name: 'test recipe', preparation_time: 1, cooking_time: 10,
+                            description: 'test test')
+    @test_food = Food.create(user: @user, name: 'test food', measurement_unit: 'unit', price: 10, quantity: 2)
     @recipe_food = RecipeFood.create(quantity: 10, food: @test_food, recipe: @recipe)
   end
 

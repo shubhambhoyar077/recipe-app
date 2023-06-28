@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Shopping list", type: :request do
+RSpec.describe 'Shopping list', type: :request do
   describe 'GET /recipes' do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')

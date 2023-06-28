@@ -4,8 +4,9 @@ RSpec.describe 'Recipe', type: :system do
   describe 'recipe index page' do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
-      @recipe = Recipe.create(user: @user, name: "test recipe1", preparation_time: 1, cooking_time: 10, description: "test test1")
-      Recipe.create(user: @user, name: "test recipe2", preparation_time: 1, cooking_time: 10, description: "test test2")
+      @recipe = Recipe.create(user: @user, name: 'test recipe1', preparation_time: 1, cooking_time: 10,
+                              description: 'test test1')
+      Recipe.create(user: @user, name: 'test recipe2', preparation_time: 1, cooking_time: 10, description: 'test test2')
       visit recipes_path
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password

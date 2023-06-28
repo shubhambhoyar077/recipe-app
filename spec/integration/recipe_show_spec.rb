@@ -4,7 +4,8 @@ RSpec.describe 'Recipe', type: :system do
   describe 'recipe show page' do
     before do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
-      @recipe = Recipe.create(user: @user, name: "test recipe1", preparation_time: 1, cooking_time: 10, description: "test test1")
+      @recipe = Recipe.create(user: @user, name: 'test recipe1', preparation_time: 1, cooking_time: 10,
+                              description: 'test test1')
       visit recipe_path(@recipe)
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
