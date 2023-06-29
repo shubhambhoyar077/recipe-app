@@ -1,5 +1,7 @@
-<h1>Public Recipes</h1>
-
+<h1 class="text-center mb-3">Public Recipes</h1>
+<%
+=begin%>
+ 
 <div class = "public_recipes">
   <% @recipes.each do |recipe| %>
     <div class = "recipe_container">
@@ -8,9 +10,40 @@
         <p>By: <%= recipe.user.name %></p>
       </div>
       <div class = "recipe_details">
+        
+      </div>
+    </div>
+  <% end %>
+</div> 
+<%
+=end%>
+
+<ul class="list-group">
+<%@recipes.each do |recipe|%>
+<li class="list-group-item">
+
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to recipe do%>
+          <%=recipe.name%>
+          <%end%>
+        </h5>
+        <p>By: <%= recipe.user.name %></p>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body text-right">
         <p>Total food items: <%= recipe.recipe_food.count %></p>
         <p>Total price: $<%=recipe.recipe_food.sum { |recipe_food| recipe_food.quantity * recipe_food.food.price }%></p>
       </div>
     </div>
-  <% end %>
+  </div>
 </div>
+
+</li>
+<%end%>
+<%%>
+</ul>

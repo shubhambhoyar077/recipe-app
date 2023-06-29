@@ -1,10 +1,10 @@
-<h1>Food List</h1>
+<h1 class="text-center mb-3">Food List</h1>
 
-<div>
-<%= link_to "Add Food", new_food_path %>
+<div class="d-flex justify-content-end mb-3">
+<%= link_to "Add Food", new_food_path, class: "btn btn-primary ms-3"%>
 </div>
 
-<table class = "foods">
+<table class="table table-bordered table-striped">
 <thead>
 <tr>
 <th>Food</th>
@@ -21,7 +21,7 @@
 <td><%= food.measurement_unit %></td>
 <td>$<%= food.price %></td>
 <td><%= food.quantity %></td>
-<td><%= button_to "Remove", food_path(food), method: :delete %></td>
+<td><%= button_to "Remove", food_path(food), method: :delete, class: "btn btn-primary ms-3" %></td>
 </tr>
 <% end %>
 </tbody>
