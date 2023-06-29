@@ -1,10 +1,18 @@
 class RecipesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   def index
     @recipes = current_user.recipe
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
+    if user_signed_in?
+      @recipe = Recipe.find(params[:id])
+    else
+      @recipe = Recipe.find(params[:id])
+      if !@recipe.public
+        redirect_to new_user_session_path
+      end
+    end
   end
 
   def new
@@ -45,7 +53,4 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :public, :description)
   end
 
-  # def toggle_params
-  #   params.require(:recipe).permit(:public)
-  # end
 end

@@ -6,10 +6,11 @@ RSpec.describe 'Recipe', type: :system do
       @user = User.create(name: 'Test', email: 'test2@example.com', password: 'password')
       @recipe = Recipe.create(user: @user, name: 'test recipe1', preparation_time: 1, cooking_time: 10,
                               description: 'test test1')
-      visit recipe_path(@recipe)
+      visit new_user_session_path
       fill_in 'Email', with: @user.email
       fill_in 'Password', with: @user.password
       click_button 'Log in'
+      visit recipe_path(@recipe)
     end
     it 'Recipe content' do
       expect(page).to have_content('test recipe1')
