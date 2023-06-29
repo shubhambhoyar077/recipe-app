@@ -18,7 +18,6 @@
       <% if user_signed_in? && current_user.id == user_id %>
       <td>
         <div class="d-flex mb-3">
-          <%= button_to "Modify", {},class: "btn btn-primary ms-3"%>
           <%= button_to "Remove", recipe_recipe_food_path(recipe_food.recipe, recipe_food), method: :delete, class: "btn btn-primary ms-3"%>
         </div>
       </td>
