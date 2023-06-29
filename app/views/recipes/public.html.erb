@@ -9,7 +9,7 @@
       </div>
       <div class = "recipe_details">
         <p>Total food items: <%= recipe.recipe_food.count %></p>
-        <p>Total price: $</p>
+        <p>Total price: $<%=recipe.recipe_food.sum { |recipe_food| recipe_food.quantity * recipe_food.food.price }%></p>
       </div>
     </div>
   <% end %>
