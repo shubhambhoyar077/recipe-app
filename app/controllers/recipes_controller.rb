@@ -7,6 +7,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
   end
 
+  def public
+    @recipes = Recipe.includes(:user).where(public: true).order(created_at: :desc)
+  end
+
   def new
     @recipe = Recipe.new
   end
