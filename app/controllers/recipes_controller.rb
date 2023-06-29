@@ -1,18 +1,14 @@
 class RecipesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :show
+  skip_before_action :authenticate_user!, only: %i[show public]
   def index
     @recipes = current_user.recipe
   end
 
   def show
-    if user_signed_in?
-      @recipe = Recipe.find(params[:id])
-    else
-      @recipe = Recipe.find(params[:id])
-      if !@recipe.public
-        redirect_to new_user_session_path
-      end
-    end
+    @recipe = Recipe.find(params[:id])
+    return unless !user_signed_in? && !@recipe.public
+
+    redirect_to new_user_session_path
   end
 
   def public
@@ -34,7 +30,6 @@ class RecipesController < ApplicationController
 
   def update
     @recipe = Recipe.find(params[:id])
-
     if @recipe.update(recipe_params)
       msg = 'Recipe is Private'
       msg = 'Recipe is Public' if @recipe.public
@@ -56,5 +51,4 @@ class RecipesController < ApplicationController
   def recipe_params
     params.require(:recipe).permit(:name, :preparation_time, :cooking_time, :public, :description)
   end
-
 end

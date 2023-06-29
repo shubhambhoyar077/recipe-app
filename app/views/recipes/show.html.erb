@@ -2,19 +2,19 @@
 <h1 class="text-center mb-3"><%=@recipe.name%></h1>
 <div class="d-flex justify-content-between mb-3">
 <div class="fs-4">Preparation time: <%=@recipe.preparation_time%> hours</div>
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.id == @recipe.user_id %>
 <%= render 'shared/toggle_btn', recipe: @recipe%>
 <%end%>
 </div>
 <div class="fs-4">Cooking time: <%=@recipe.cooking_time%> hours</div>
 <p class="text-break fs-4">Process: <%=@recipe.description%></p>
 <div class="d-flex justify-content-between mb-3">
-<% if user_signed_in? %>
+<% if user_signed_in? && current_user.id == @recipe.user_id %>
 <%= button_to "Generate shopping list", generate_shopping_list_path, method: :get, class: "btn btn-primary" %>
 <%= button_to "Add Ingredient", new_recipe_recipe_food_path(@recipe), method: :get, class: "btn btn-primary" %>
 <%end%>
 </div>
-<%= render 'shared/recipe_food_table', recipe_foods: @recipe.recipe_food%>
+<%= render partial: 'shared/recipe_food_table', locals: { recipe_foods: @recipe.recipe_food, user_id: @recipe.user_id } %>
 </div>
 
 

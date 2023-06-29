@@ -4,7 +4,7 @@
       <th>Food</th>
       <th>Quantity</th>
       <th>Value</th>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.id == user_id %>
       <th>Action</th>
       <%end%>
     </tr>
@@ -15,7 +15,7 @@
       <td><%=recipe_food.food.name%></td>
       <td><%="#{recipe_food.quantity} #{recipe_food.food.measurement_unit}"%></td>
       <td><%=recipe_food.quantity * recipe_food.food.price%></td>
-      <% if user_signed_in? %>
+      <% if user_signed_in? && current_user.id == user_id %>
       <td>
         <div class="d-flex mb-3">
           <%= button_to "Modify", {},class: "btn btn-primary ms-3"%>
