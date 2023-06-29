@@ -18,7 +18,6 @@ RSpec.describe 'User index page', type: :system do
       expect(page).to have_content('New public recipe')
     end
 
-
     scenario 'Private recipe is not displayed on public_recipes page' do
       expect(page).should have_no_content('New private recipe')
     end
