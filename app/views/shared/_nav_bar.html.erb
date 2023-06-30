@@ -1,0 +1,47 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-4">
+  <div class="container-fluid">
+  <% if user_signed_in? %>
+    <a class="navbar-brand" href="/"><h1><%=current_user.name%></h1></a>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Food", foods_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Recipe", recipes_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Shopping list", generate_shopping_list_path, class: "nav-link" %>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn btn-primary' %>
+        </li>
+      </ul>
+    </div>
+    <%else%>
+    <a class="navbar-brand" href="/"><h1>Recipe App</h1></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <%= button_to 'Sign In', new_user_session_path, method: :get, class: 'btn btn-primary' %>
+        </li>
+        <li class="nav-item">
+          <%= button_to 'Sign Up', new_user_registration_path, method: :get, class: 'btn btn-primary ms-3' %>
+        </li>
+      </ul>
+      </div>
+    <%end%>
+
+  </div>
+</nav>

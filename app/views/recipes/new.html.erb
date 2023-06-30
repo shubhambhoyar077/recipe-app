@@ -16,8 +16,8 @@
 </div>
 
   <div class="mb-3">
-<%= check_box_tag :public, value: '0', checked: false, class: "form-check-input" %>
-<%= label_tag :public, "Public", class: "form-check-label" %>
+  <%= form.label :public, class: "form-check-label"%>
+  <%= form.check_box :public, class: "form-check-input"%>
 </div>
 
   <div class="mb-3">

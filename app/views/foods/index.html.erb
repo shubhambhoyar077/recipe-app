@@ -1,7 +1,7 @@
 <h1 class="text-center mb-3">Food List</h1>
 
 <div class="d-flex justify-content-end mb-3">
-<%= link_to "Add Food", new_food_path, class: "btn btn-primary" %>
+<%= link_to "Add Food", new_food_path, class: "btn btn-primary ms-3"%>
 </div>
 
 <table class="table table-bordered table-striped">
@@ -21,7 +21,7 @@
 <td><%= food.measurement_unit %></td>
 <td>$<%= food.price %></td>
 <td><%= food.quantity %></td>
-<td><%= button_to "Remove", food_path(food), method: :delete, class: "btn btn-primary", id: "delete-btn-#{food.id}" %></td>
+<td><%= button_to "Remove", food_path(food), method: :delete, class: "btn btn-primary ms-3",  id: "remove-button-#{food.id}" %></td>
 </tr>
 <% end %>
 </tbody>

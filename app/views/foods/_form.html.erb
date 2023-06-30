@@ -9,22 +9,22 @@
 <% end %>
 
 <%= form_with model:@food do |form| %>
-  <div class = "mb-3">
+  <div class="mb-3">
     <%= form.label :name, class: "form-label" %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
-  <div class = "mb-3">
+  <div class="mb-3">
     <%= form.label :measurement, class: "form-label" %>
     <%= form.text_field :measurement_unit, class: "form-control" %>
   </div>
 
-  <div class = "mb-3">
+  <div class="mb-3">
     <%= form.label :price, class: "form-label" %>
     <%= form.number_field :price, class: "form-control" %>
   </div>
 
-  <div class = "mb-3">
+  <div class="mb-3">
     <%= form.label :quantity, class: "form-label" %>
     <%= form.number_field :quantity, class: "form-control" %>
   </div>
