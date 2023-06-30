@@ -1,0 +1,29 @@
+<%= form_with model:@recipe do |form|%>
+<h1 class="text-center mb-3">Create Recipe</h1>
+  <div class="mb-3">
+<%=form.label :name, class: "form-label"%>
+<%=form.text_field :name, class: "form-control"%>
+</div>
+
+  <div class="mb-3">
+<%=form.label :preparation_time, class: "form-label"%>
+<%=form.number_field :preparation_time, class: "form-control"%>
+</div>
+
+  <div class="mb-3">
+<%=form.label :cooking_time, class: "form-label"%>
+<%=form.number_field :cooking_time, class: "form-control"%>
+</div>
+
+  <div class="mb-3">
+  <%= form.label :public, class: "form-check-label"%>
+  <%= form.check_box :public, class: "form-check-input"%>
+</div>
+
+  <div class="mb-3">
+<%=form.label :description, class: "form-label"%>
+<%=form.text_area :description, class: "form-control"%>
+</div>
+
+<%=form.submit "Create", class: "btn btn-primary"%>
+<%end%>

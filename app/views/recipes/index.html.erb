@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-end mb-3">
+<%= button_to "Create Recipe", new_recipe_path, method: :get, class: "btn btn-primary" %>
+</div>
+<ul class="list-group">
+<%@recipes.each do |recipe|%>
+<li class="list-group-item">
+
+<div class="card">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <div class="card-body">
+        <h5 class="card-title">
+          <%= link_to recipe do%>
+          <%=recipe.name%>
+          <%end%>
+        </h5>
+        <%= button_to "REMOVE", recipe_path(recipe), method: :delete, class: "btn btn-primary", id: "remove-button-#{recipe.id}"%>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body text-right">
+        <p class="card-text"><%=recipe.description%></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</li>
+<%end%>
+<%%>
+</ul>
+
+

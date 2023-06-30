@@ -1,0 +1,25 @@
+<div>
+<h1 class="text-center mb-3">Shopping List</h1>
+<div class="d-flex justify-content-between mb-3">
+<span class="fs-4">Food item to buy: <%=@missing_foods.length%></span>
+<span class="fs-4">Total: $<%=@total_value%></span>
+</div>
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Food</th>
+      <th>Quantity</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @missing_foods.each do |food, quantity|%>
+    <tr>
+      <td><%=food.name%></td>
+      <td><%="#{quantity} #{food.measurement_unit}"%></td>
+      <td>$<%=quantity * food.price%></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
+</div>

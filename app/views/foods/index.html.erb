@@ -1,0 +1,28 @@
+<h1 class="text-center mb-3">Food List</h1>
+
+<div class="d-flex justify-content-end mb-3">
+<%= link_to "Add Food", new_food_path, class: "btn btn-primary ms-3"%>
+</div>
+
+<table class="table table-bordered table-striped">
+<thead>
+<tr>
+<th>Food</th>
+<th>Measurement Unit</th>
+<th>Unit price</th>
+<th>Quantity</th>
+<th>Actions</th>
+</tr>
+</thead>
+<tbody>
+<% @foods.each do |food| %>
+<tr>
+<td><%= food.name %></td>
+<td><%= food.measurement_unit %></td>
+<td>$<%= food.price %></td>
+<td><%= food.quantity %></td>
+<td><%= button_to "Remove", food_path(food), method: :delete, class: "btn btn-primary ms-3",  id: "remove-button-#{food.id}" %></td>
+</tr>
+<% end %>
+</tbody>
+</table>
